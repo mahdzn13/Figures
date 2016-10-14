@@ -1,20 +1,36 @@
+import java.awt.*;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Figuras {
+public class MenuFiguras {
     //final FiguraJPanel lienzo = new FiguraJPanel();
-    public Figuras(){
-        menu();
+
+    public MenuFiguras(){
+        try {
+            menu();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
-    public void menu(){
+    public void menu() throws InterruptedException {
         String userChoice="";
         Scanner s = new Scanner(System.in);
         while(!Objects.equals(userChoice, "I")){
             printMenu();
             userChoice = s.next();
             if (Objects.equals(userChoice, "A")){
+                EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        try {
+                            Texto frame = new Texto();
+                            frame.setVisible(true);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
             } else
             if (Objects.equals(userChoice, "B")){
@@ -37,7 +53,9 @@ public class Figuras {
             } else
             if (Objects.equals(userChoice, "H")){
 
-            }
+            } if (Objects.equals(userChoice, "I")){break;}
+            Thread.sleep(8000);
+
         }
     }
     private void printMenu(){
